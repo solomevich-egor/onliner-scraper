@@ -1,0 +1,10 @@
+{
+    "https://catalog.onliner.by/notebook": {
+        "item": "//div[@class='catalog-form__offers-unit catalog-form__offers-unit_primary']",
+        "fields": {
+            "title": "//a[contains(@class, 'catalog-form__link') and contains(@class, 'catalog-form__link_nodecor') and contains(@class, 'catalog-form__link_primary') and contains(@class, 'catalog-form__link_base') and (contains(text(), 'ноутбук') or contains(text(), 'Ноутбук') or contains(text(), 'станция'))]/text()",
+            "link": "//a[contains(@class, 'catalog-form__link') and contains(@class, 'catalog-form__link_nodecor') and contains(@class, 'catalog-form__link_primary') and contains(@class, 'catalog-form__link_base') and (contains(text(), 'ноутбук') or contains(text(), 'Ноутбук') or contains(text(), 'станция'))]/@href",
+            "description": "normalize-space(//div[contains(@class, 'catalog-form__parameter-part_1')])"
+        }
+    }
+}

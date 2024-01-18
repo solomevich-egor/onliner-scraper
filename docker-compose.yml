@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+    db:
+        container_name: mongodb
+        image: mongo:latest
+        volumes:
+            - app-db-data:/data/db
+        env_file:
+            - .env
+        networks:
+            - scraper-network
+        ports:
+            - "${MONGO_PORT}:${MONGO_PORT}"
+        environment:
+            - "MONGO_INITDB_DATABASE=${MONGO_DB}"
+            - "MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}"
+            - "MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}"
+    
+    backend:
+        container_name: scraper
+        depends_on:
+            - db
+        volumes:
+            - ./app:/app
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        networks:
+            - scraper-network
+        command: 
+            python main.py
+
+
+networks:
+    scraper-network:
+
+
+volumes:
+    app-db-data:
